@@ -1,3 +1,5 @@
+![CI](https://github.com/SilverNate/simple-product-api/actions/workflows/ci.yml/badge.svg)
+
 # 🛍️ Simple Product API
 
 A robust, scalable Golang backend API for product management (Sayuran, Buah, Protein, Snack), built with Fiber, PostgreSQL, Redis, Wire, and Clean Architecture following Solid Pricinple.
@@ -97,4 +99,3 @@ Run Bencmark test :
 
 ---
 
-![CI](https://github.com/SilverNate/simple-product-api/actions/workflows/ci.yml/badge.svg)
