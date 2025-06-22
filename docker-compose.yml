@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app:
+    restart: on-failure
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - SERVER_PORT=8080
+      - POSTGRES_DSN=postgres://admin:admin@db:5432/viska?sslmode=disable
+      - REDIS_ADDRESS=redis:6379
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: viska
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"

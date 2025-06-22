@@ -1,0 +1,124 @@
+basePath: /
+definitions:
+  common.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+      meta:
+        description: for pagination
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: REST API for managing products.
+  title: Simple Product API
+  version: "1.0"
+paths:
+  /api/v1/products:
+    get:
+      consumes:
+      - application/json
+      description: Get product by using id
+      parameters:
+      - description: Product ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: Get products by id
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Create product
+      parameters:
+      - description: Product Name
+        in: query
+        name: name
+        required: true
+        type: string
+      - description: Product Type
+        in: query
+        name: type
+        required: true
+        type: string
+      - description: Product Price
+        in: query
+        name: price
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: Create products
+      tags:
+      - Products
+  /api/v1/products/list:
+    post:
+      consumes:
+      - application/json
+      description: Get paginated product list with filter & sort
+      parameters:
+      - description: Search query name
+        in: query
+        name: name
+        type: string
+      - description: Product type
+        in: query
+        name: type
+        type: string
+      - description: Sort field
+        in: query
+        name: sort_by
+        type: string
+      - description: Sort order
+        in: query
+        name: order
+        type: string
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/common.Response'
+      summary: Get list of products
+      tags:
+      - Products
+schemes:
+- http
+swagger: "2.0"
